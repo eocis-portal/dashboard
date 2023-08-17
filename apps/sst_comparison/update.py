@@ -4,6 +4,7 @@ import csv
 import xarray as xr
 import json
 import shutil
+import logging
 
 from plot import plot
 
@@ -18,7 +19,7 @@ config = {
     }
 }
 
-
+DATE_FORMAT = "%Y-%m-%d"
 
 status_filename = "status.json"
 
@@ -27,7 +28,7 @@ def update(deployment_folder, data_start_date, data_load_fn, limit=0, rescan=Tru
         last_processed = data_start_date - datetime.timedelta(days=1)
         status_path = os.path.join(deployment_folder, status_filename)
 
-        status = { "last_processed": last_processed.strftime("%Y-%m-%d") }
+        status = { "last_processed": last_processed.strftime(DATE_FORMAT) }
         if os.path.exists(status_path):
             with open(status_path) as f:
                 status = json.loads(f.read())
@@ -54,6 +55,7 @@ def update(deployment_folder, data_start_date, data_load_fn, limit=0, rescan=Tru
             ds = data_load_fn(traversal_date)
             if ds is None:
                 break
+            logging.info("Processing: "+traversal_date.strftime(DATE_FORMAT))
             loaded += 1
             if limit and loaded > limit:
                 break
@@ -74,7 +76,7 @@ def update(deployment_folder, data_start_date, data_load_fn, limit=0, rescan=Tru
                     data[csv_name].append((traversal_date,v))
                     updated.add(csv_name)
 
-            status["last_processed"] = traversal_date.strftime("%Y-%m-%d")
+            status["last_processed"] = traversal_date.strftime(DATE_FORMAT)
 
 
         for csv_name in config:
@@ -83,7 +85,7 @@ def update(deployment_folder, data_start_date, data_load_fn, limit=0, rescan=Tru
                 with open(csv_path,"w") as f:
                     wtr = csv.writer(f)
                     for (dt,v) in data[csv_name]:
-                        dt_s = dt.strftime("%Y-%m-%d")
+                        dt_s = dt.strftime(DATE_FORMAT)
                         v_s = str(v)
                         wtr.writerow([dt_s,v_s])
 
@@ -124,6 +126,8 @@ def data_loader(dt):
     return None
 
 data_start_date = datetime.date(1982,1,1)
+
+logging.basicConfig(level=logging.INFO)
 
 update(args.deployment_folder, data_start_date, data_loader, args.limit, rescan=False)
 
