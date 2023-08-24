@@ -19,65 +19,69 @@
 <body>
     <div class="container-fluid">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">EOCIS Portal</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-              </li>
-            </ul>
-            <form class="d-flex">
-              <input id="search_text" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button id="search_btn" class="btn btn-outline-success">Search</button>
-            </form>
-          </div>
-        </div>
-      </nav>
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">EOCIS Portal - Climate Dashboard</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                Related Services
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">EOCIS Data Services</a></li>
+                                <li><a class="dropdown-item" href="#">EOCIS Data Viewer</a></li>
+                                <li><a class="dropdown-item" href="#">EO DataHub Home</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input id="search_text" class="form-control me-2" type="search" placeholder="Search"
+                               aria-label="Search">
+                        <button id="search_btn" class="btn btn-outline-success">Search</button>
+                    </form>
+                    <img class="logo" src="images/eocis-logo.png" width="128" style="margin-left:32px;">
+                </div>
+            </div>
+        </nav>
       <div class="container">
         <div class="row">
 
-            <div class="card" style="width: 18rem; margin:1rem;">
-              <div class="card-header">Card 1</div>
-              <div class="card-body">
-                Card 1 Body
+            <div class="card" style="width: 36rem; margin:1rem;">
+                <div class="card-header">
+                <h5 class="card-title">Daily Average Sea Surface Temperatures - 1982-2023</h5>
               </div>
+              <img class="card-img-top" src="app_deployments/sst_comparison/thumbnail.png" alt="Card image cap">
+
+              <div class="card-body">
+
+                Shows the variation  in mean sea surface temperatures between 60N and 60S, between different years
+              </div>
+              <a href="app_deployments/sst_comparison/index.html" class="btn btn-primary">Open</a>
               <div class="card-footer">
-                Card 1 Footer
+                Datasets - EOCIS Sea Surface Temperatures
               </div>
           </div>
 
-            <div class="card" style="width: 18rem; margin:1rem;">
+            <div class="card" style="width: 36rem; margin:1rem;">
               <div class="card-header">
-                Card 2
+                <h5 class="card-title">Africa Soil Moisture - Trends Per Country</h5>
               </div>
-              <div class="card-body">
-                Card 2 Body
-              </div>
-              <div class="card-footer">
-                Card 2 Footer
-              </div>
+              <img class="card-img-top" style="width:384px;" src="app_deployments/soil_moisture_anomalies/thumbnail.png" alt="Card image cap">
 
+              <div class="card-body">
+
+                Measure average soil moisture by country in Africa
+              </div>
+              <a href="app_deployments/soil_moisture_anomalies/index.html" class="btn btn-primary">Open</a>
+              <div class="card-footer">
+                Datasets - EOCIS Soil Moisture
+              </div>
           </div>
         </div>
       </div>
