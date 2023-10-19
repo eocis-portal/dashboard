@@ -38,7 +38,7 @@ cmap = plt.cm.get_cmap("BrBG")
 
 
 countries_folder = "countries"
-anomalies_file = os.path.join(deployment_folder,"anomalies.json")
+anomalies_file = os.path.join(deployment_folder, "anomalies.json")
 anomalies_by_country_code = {}
 all_values = []
 lag_names = []
@@ -83,5 +83,5 @@ cb = plt.colorbar(sm,ax=axs,fraction=0.05,orientation="horizontal")
 cb.ax.tick_params(labelsize=30)
 cb.set_label(label='<=Drier   Soil Moisture Anomaly   Wetter=>',fontsize=40)
 
-plt.savefig(os.path.join(deployment_folder,"static","anomalies.png"))
+plt.savefig(os.path.join(deployment_folder, "static", "anomalies.png"))
 

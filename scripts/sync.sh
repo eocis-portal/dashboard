@@ -1,6 +1,7 @@
 #!/bin/bash
 
-rootfolder=/home/dev/github/dashboard
+rootfolder=`dirname $0`/..
 
-rsync -avr $rootfolder/apps dev@192.171.169.123:/home/dev/github/dashboard
+rsync -avr $rootfolder/src dev@eocis.org:/home/dev/services/dashboard
+rsync -avr $rootfolder/static dev@eocis.org:/home/dev/services/dashboard
 

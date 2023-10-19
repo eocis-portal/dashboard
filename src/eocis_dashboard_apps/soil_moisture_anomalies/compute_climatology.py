@@ -15,8 +15,8 @@ parser.add_argument("--start-year",type=int,default=1983)
 parser.add_argument("--end-year",type=int,default=2013)
 
 args = parser.parse_args()
-csv_folder = os.path.join(args.deployment_folder,"csv")
-climatology_csv_folder = os.path.join(args.deployment_folder,"climatology")
+csv_folder = os.path.join(args.deployment_folder, "csv")
+climatology_csv_folder = os.path.join(args.deployment_folder, "climatology")
 
 os.makedirs(climatology_csv_folder, exist_ok=True)
 

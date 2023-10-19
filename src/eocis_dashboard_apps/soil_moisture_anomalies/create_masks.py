@@ -19,7 +19,7 @@ masks_folder = "masks"
 os.makedirs(masks_folder,exist_ok=True)
 
 for country_file in sorted(os.listdir("countries")):
-    with open(os.path.join("countries",country_file)) as f:
+    with open(os.path.join("countries", country_file)) as f:
         country_code = os.path.splitext(country_file)[0]
         obj = json.loads(f.read())
         country_name = obj["name"]

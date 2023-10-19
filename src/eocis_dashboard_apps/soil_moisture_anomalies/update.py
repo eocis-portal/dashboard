@@ -11,7 +11,7 @@ DATE_FORMAT = "%Y-%m-%d"
 def update(deployment_folder, data_start_date, data_load_fn, limit=0, rescan=True):
 
     if rescan:
-        csv_folder = os.path.join(deployment_folder,"csv")
+        csv_folder = os.path.join(deployment_folder, "csv")
         masks_folder = "masks"
         masks = {}
         timeseries = {}
