@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arctic Sea Ice Fraction</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.6.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.2"></script>
+    <script src="main.js"></script>
+    <link rel="Stylesheet" href="style.css">
+</head>
+<body onload="main()">
+    <div id="flexroot">
+        <div>
+            <label for="date_select">View Date</label>
+            <input id="date_select" type="date" value="2010-01-01" min="2010-01-01" max="2019-12-31">
+        </div>
+        <div id="vizdiv">
+        </div>
+        <p>
+            <a href="https://cartographyvectors.com/map/6-africa-outline-with-countries">Attribution: https://cartographyvectors.com/map/6-africa-outline-with-countries</a>
+        </p>
+    </div>
+
+</body>
+</html>

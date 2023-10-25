@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Timeseries</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.6.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.2"></script>
+    <script src="timeseries.js"></script>
+    <link rel="Stylesheet" href="style.css">
+</head>
+<body onload="main()">
+    <div id="flexroot">
+        <div>
+            <div style="display:inline-block;">
+                <label for="date_select_start">Start Date</label>
+                <input id="date_select_start" type="date" value="2010-01-01" min="2010-01-01" max="2019-12-31">
+            </div>
+            <div style="display:inline-block;">
+                <label for="date_select_end">End Date</label>
+                <input id="date_select_end" type="date" value="2019-12-31" min="2010-01-01" max="2019-12-31">
+            </div>
+        </div>
+        <div id="vizdiv">
+        </div>
+    </div>
+</body>
+</html>
