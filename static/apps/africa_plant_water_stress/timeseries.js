@@ -14,6 +14,7 @@ function plot() {
 
         let start_dt = document.getElementById("date_select_start").value;
         let end_dt = document.getElementById("date_select_end").value;
+
         // format YYYY-MM-DD
 
         let start_year = Number.parseInt(start_dt.slice(0,4));
@@ -49,7 +50,7 @@ function plot() {
                 "y": {
                     "field": "stress",
                     "type": "quantitative",
-                    "scale": {"domain": [0, 1]},
+                   /* "scale": {"domain": [0, 100]}, */
                     "title": "Plant water stress"
                 }
             }
@@ -65,27 +66,45 @@ function plot() {
 
 function main() {
 
-    let date_select_start = document.getElementById("date_select_start");
-    date_select_start.addEventListener("change", (evt) => {
-       plot();
+    fetch("data/metadata.json").then(r => r.text()).then( txt => {
+        let metadata = JSON.parse(txt);
+
+        let date_select_start = document.getElementById("date_select_start");
+        date_select_start.setAttribute("min", metadata.start_date);
+        date_select_start.setAttribute("max", metadata.end_date);
+        date_select_start.setAttribute("value", metadata.start_date);
+        date_select_start.addEventListener("change", (evt) => {
+            plot();
+        });
+        let date_select_end = document.getElementById("date_select_end");
+        date_select_end.setAttribute("min", metadata.start_date);
+        date_select_end.setAttribute("max", metadata.end_date);
+        date_select_end.setAttribute("value", metadata.end_date);
+        date_select_end.addEventListener("change", (evt) => {
+            plot();
+        });
+
+        let reset = document.getElementById("reset");
+        reset.addEventListener("click", (evt) => {
+            date_select_start.value = metadata.start_date;
+            date_select_end.value = metadata.end_date;
+            plot();
+        });
+
+        const params = new URLSearchParams(window.location.search);
+        let country = params.get("country");
+        country_name = country;
+
+        fetch("data/timeseries/" + country + ".csv").then(r => r.text()).then(txt => {
+
+            data = txt;
+
+            plot();
+
+            window.addEventListener("resize", (evt) => {
+                plot();
+            });
+
+        });
     });
-    let date_select_end = document.getElementById("date_select_end");
-    date_select_end.addEventListener("change", (evt) => {
-       plot();
-    });
-
-    const params = new URLSearchParams(window.location.search);
-    let country = params.get("country");
-    country_name = country;
-
-    fetch("timeseries/"+country+".csv").then(r => r.text()).then(txt => {
-
-        data = txt;
-
-        plot();
-
-        window.addEventListener("resize", (evt) => { plot(); });
-
-    });
-
 }

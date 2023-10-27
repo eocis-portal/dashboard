@@ -25,6 +25,6 @@ body {
     margin: 0px;
 }
 
-input[type=date], label {
+input[type=date], label, input[type=button] {
     font-size: 24px;
 }

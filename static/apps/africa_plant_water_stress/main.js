@@ -1,4 +1,5 @@
 var data = undefined;
+var metadata = undefined;
 
 function plot() {
     let vizdiv = document.getElementById("vizdiv");
@@ -18,7 +19,7 @@ function plot() {
         let month = dt.slice(5,7);
         let day = dt.slice(8,10);
 
-        let data_url = "data/"+year+"/"+month+"/stress"+year+month+day+".csv";
+        let data_url = "data/csv/"+year+"/"+month+"/stress"+year+month+day+".csv";
 
         console.log("height=" + h + ",width=" + w);
 
@@ -39,6 +40,15 @@ function plot() {
                 "type": "mercator"
             },
             "transform": [{
+                "lookup": "properties.adm0_a3",
+                "from": {
+                  "data": {
+                    "url": data_url
+                  },
+                  "key": "country",
+                  "fields": ["stress","country"]
+                }
+              }, {
                 "lookup": "properties.adm0_a3",
                 "from": {
                   "data": {
@@ -77,12 +87,18 @@ function plot() {
 
 function main() {
 
-    document.getElementById("date_select").addEventListener("change", (evt) => {
-        refresh();
+    fetch("data/metadata.json").then(r => r.text()).then( txt => {
+       metadata = JSON.parse(txt);
+       let date_select = document.getElementById("date_select");
+       date_select.setAttribute("min",metadata.start_date);
+       date_select.setAttribute("max",metadata.end_date);
+       date_select.setAttribute("value",metadata.end_date);
+       date_select.addEventListener("change", (evt) => {
+          refresh();
+       });
+
+       refresh();
     });
-
-    refresh();
-
 }
 
 function refresh() {
