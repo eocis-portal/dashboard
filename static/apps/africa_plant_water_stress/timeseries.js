@@ -26,6 +26,9 @@ function plot() {
         let end_day = Number.parseInt(end_dt.slice(8,10));
 
         console.log("height=" + h + ",width=" + w);
+        if (h > w/4) {
+            h = w/4;
+        }
 
         let spec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",

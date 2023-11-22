@@ -2,6 +2,6 @@
 
 rootfolder=`dirname $0`/..
 
-rsync -avr $rootfolder/src dev@eocis.org:/home/dev/services/dashboard
+# rsync -avr $rootfolder/src dev@eocis.org:/home/dev/services/dashboard
 rsync -avr $rootfolder/static dev@eocis.org:/home/dev/services/dashboard
 
