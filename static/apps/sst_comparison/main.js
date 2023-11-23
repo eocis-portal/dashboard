@@ -19,7 +19,6 @@ function plot() {
             "description": "A line plot.",
             "title": "Mean Daily Sea Surface Temperatures between 60S and 60N",
             "data": {"format": {"type": "csv"}, "values": data},
-            "mark": "line",
             "width": w,
             "height": h - 40,
             "padding": 20,
@@ -27,21 +26,72 @@ function plot() {
                 "type": "fit",
                 "contains": "padding"
             },
-            "encoding": {
-                "x": {"field": "doy", "type": "quantitative", "title": "Day of Year", "scale": {"domain": [1, 365]}, "axis": { "tickCount":12, "tickBand":"center"}},
-                "y": {
-                    "field": "analysed_sst",
-                    "type": "quantitative",
-                    "scale": {"domain": [19.5, 21.5]},
-                    "title": "Mean Sea Surface Temperature (Centigrade)"
-                },
-                "color": {
-                    "field": "year", "type": "quantitative", "legend": {
-                        "format": "r"
+            "layer": [{
+                "transform": [
+                    {
+                        "filter": "datum.year >= 2023"
+                    },
+                    {
+                        "calculate": "substring(toString(datum.year),0,4)",
+                        "as": "year"
                     }
-                },
-                "tooltip": {"field": "year", "type": "quantitative"}
-            }
+                ],
+                "mark": "line",
+                "encoding": {
+                    "x": {
+                        "field": "doy",
+                        "type": "quantitative",
+                        "title": "Day of Year",
+                        "scale": {"domain": [1, 365]},
+                        "axis": {"tickCount": 12, "tickBand": "center"}
+                    },
+                    "y": {
+                        "field": "analysed_sst",
+                        "type": "quantitative",
+                        "scale": {"domain": [19.5, 21.5]},
+                        "title": "Mean Sea Surface Temperature (Centigrade)"
+                    },
+                    "color": {
+                        "field": "year",
+                        "type": "nominal",
+                        "scale": {"domain": ["2023"], "range": ["#F1C40F"]},
+                        "legend": {
+                            "type": "symbol",
+                            "symbolFillColor": "#F1C40F"
+                        }
+                    },
+                    "tooltip": {"field": "year", "type": "nominal"}
+                }
+            }, {
+                "transform": [
+                    {
+                        "filter": "datum.year < 2023"
+                    }
+                ],
+                "mark": "line",
+                "encoding": {
+                    "x": {
+                        "field": "doy",
+                        "type": "quantitative",
+                        "title": "Day of Year",
+                        "scale": {"domain": [1, 365]},
+                        "axis": {"tickCount": 12, "tickBand": "center"}
+                    },
+                    "y": {
+                        "field": "analysed_sst",
+                        "type": "quantitative",
+                        "scale": {"domain": [19.5, 21.5]},
+                        "title": "Mean Sea Surface Temperature (Centigrade)"
+                    },
+                     "color": {
+                        "field": "year", "type": "quantitative", "legend": {
+                            "format": "r",
+                             "type": "gradient"
+                        }
+                    },
+                    "tooltip": {"field": "year", "type": "quantitative"}
+                }
+            }]
         }
 
         vegaEmbed(vizdiv, spec, {
