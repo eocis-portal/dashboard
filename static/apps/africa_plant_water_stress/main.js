@@ -26,7 +26,7 @@ function plot() {
         let spec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "description": "Chloropleth plot of plant water stress",
-            "title": "Plant Water Stress - Mean values by country - "+dt,
+            "title": "Plant Water Requirements - Mean values by country - "+dt,
             "data": {"format": {"property": "features"}, "values": data},
             "mark": {"type":"geoshape","tooltip":true},
             "width": w,
@@ -65,7 +65,10 @@ function plot() {
            "encoding": {
                 "color": {
                   "field": "stress",
-                  "type": "quantitative"
+                  "type": "quantitative",
+                    "legend": {
+                      "title": "Requirement %"
+                    }
                 },
                "href" : {
                     "field": "url"

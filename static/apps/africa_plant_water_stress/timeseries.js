@@ -33,7 +33,7 @@ function plot() {
         let spec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "description": "A line plot.",
-            "title": "Plant water stress - "+country_name,
+            "title": "Plant Water Requirements - "+country_name,
             "data": {"format": {"type": "csv"}, "values": data},
             "mark": "line",
             "width": w,
@@ -54,7 +54,7 @@ function plot() {
                     "field": "stress",
                     "type": "quantitative",
                    /* "scale": {"domain": [0, 100]}, */
-                    "title": "Plant water stress"
+                    "title": "Plant water requirement %"
                 }
             }
         }
