@@ -29,7 +29,43 @@ function plot() {
             "layer": [{
                 "transform": [
                     {
-                        "filter": "datum.year >= 2023"
+                        "filter": "datum.year == 2024"
+                    },
+                    {
+                        "calculate": "substring(toString(datum.year),0,4)",
+                        "as": "year"
+                    }
+                ],
+                "mark": "line",
+                "encoding": {
+                    "x": {
+                        "field": "doy",
+                        "type": "quantitative",
+                        "title": "Day of Year",
+                        "scale": {"domain": [1, 365]},
+                        "axis": {"tickCount": 12, "tickBand": "center"}
+                    },
+                    "y": {
+                        "field": "analysed_sst",
+                        "type": "quantitative",
+                        "scale": {"domain": [19.5, 21.5]},
+                        "title": "Mean Sea Surface Temperature (Centigrade)"
+                    },
+                    "color": {
+                        "field": "year",
+                        "type": "nominal",
+                        "scale": {"domain": ["2024"], "range": ["#FF0000"]},
+                        "legend": {
+                            "type": "symbol",
+                            "symbolFillColor": "#FF0000"
+                        }
+                    },
+                    "tooltip": {"field": "year", "type": "nominal"}
+                }
+            }, {
+                "transform": [
+                    {
+                        "filter": "datum.year == 2023"
                     },
                     {
                         "calculate": "substring(toString(datum.year),0,4)",
@@ -105,7 +141,7 @@ function plot() {
 function main() {
 
 
-    fetch("globmeansst.csv").then(r => r.text()).then(txt => {
+    fetch("data/globmeansst.csv").then(r => r.text()).then(txt => {
 
         data = txt;
 

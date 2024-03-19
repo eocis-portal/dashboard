@@ -1,33 +1,25 @@
 # dashboard
 
-repository for dashboard software and prototype apps
+repository for dashboard applications
 
-## dashboard apps introduction
-
-a dashboard app is defined as one or more web pages, which may load data from statically served data files (for example, csv, json)
+A dashboard app is defined as one or more web pages, which may load data from statically served data files (for example, csv, json)
 
 ## app source code
 
-an app is composed of the following source code:
+Each app is composed of the following, stored under a sub-folder of [static/apps](static/apps):
 
-* static HTML/CSS/javascript files (including the root page, `index.html`, and a thumbnail image, `thumbnail.png`)
-* a metadata file `metadata.json` describing the name, authors, summary and other relevant info
-  * the app can be accessed via the permanent link http://eocis.org/dashboard/apps/<name> using name defined in metadata.json
-* an `update.sh` script which runs periodically (for example nightly) on the EOCIS server
-* other scripts and programs which are invoked by the update script
+* static HTML/CSS/javascript files (including the root page, `index.html`
+* a thumbnail image, `thumbnail.png`) that should be 400x400 pixels
+* data files stored in a `data` sub-directory. 
 
-the source code for the app would usually be stored in a github repo.
+## main page
 
-The app is served from a deployment folder, this will be passed as an argument to the update script
-The update script will populate or refresh the deployment folder
+the [index.html](index.html) file is a bootstrap-based simple web app which display's each app#s thumbnail image in a tile and opens the app itself
+in an iframe when the tile is clicked.  Each app needs to have a tile definition added to this file.  This should be self-explanatory.
 
-## The update process:
+The app can be accessed directly via the permanent link `https://eocis.org/portal/dashboard/?app=<name>` to allow bookmarking
 
-* the latest version of the app's source code is pulled before each update runs
-* the update script is only allowed to write or update files under the deployment folder
-* the amount of data stored under the deployment folder will be restricted
-* the update script is allowed to read any data files from the EOCIS datasets
-* the update process should be efficient, incrementally updating any deployed data files
-* one or more conda environments may be defined using `environment.yml` files and used in the update process
-* however, the update process does not need to use 
+## backends
 
+apps may require data files to be generated or regularly updated in each app's `data` sub-directory, 
+in these cases the code for the backends to do this is stored in the [dashboard-backend](https://github.com/eocis-portal/dashboard-backend) repo
