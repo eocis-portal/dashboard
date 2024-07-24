@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arctic Sea Ice thickness</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.6.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.2"></script>
+    <script src="time_series.js"></script>
+    <script defer src="image_viewer.js"></script>
+    <link rel="Stylesheet" href="main.css">
+</head>
+<body onload="main()">
+    <div id="flexroot">
+        <h1>Mean Surface Elevation Change (SEC) in Antarctica per year</h1>
+        <p>Need new text here &#128005;</p>
+        <p>This app is based on <a href="https://eocis.org/dataset-land-ice-elevation/">the EOCIS Antarctic SEC dataset.</a></p>
+        <!-- <a href="sea_ice_thickness.csv" download="sea_ice_thickness.csv">Download the data (CSV)</a> -->
+        <div id="vizdiv">
+        </div>
+        <h2>Select a time period</h2>
+        <select id="imageSelect">
+            <option value="">--Select an Image--</option>
+        </select>
+        <br><br>
+        <img id="displayImage" src="" alt="Selected Image" style="max-width: 100%; height: auto;">
+    </div>
+</body>
+</html>
