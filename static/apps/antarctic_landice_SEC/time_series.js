@@ -1,21 +1,36 @@
 async function fetchFiles(ts_url, map_url) {
     try {
-        const [ts_res, map_res] = await Promise.all([
-            fetch(ts_url),
-            fetch(map_url),
-        ]);
+        let ts_text = null;
+        let map_data = null;
 
-        if (!ts_res.ok) {
-            throw new Error("Timeseries data failed to fetch");
+        if (map_url === null) {
+            const [ts_res] = await Promise.all([
+                fetch(ts_url)
+            ])
+        
+            if (!ts_res.ok) {
+                throw new Error("Timeseries data failed to fetch");
+            }
+        
+            ts_text = await ts_res.text();        
+        } else {
+            // This fetches both timeseries data and map data
+            const [ts_res, map_res] = await Promise.all([
+                fetch(ts_url),
+                fetch(map_url),
+            ]);
+
+            if (!ts_res.ok) {
+                throw new Error("Timeseries data failed to fetch");
+            }
+            if (!map_res.ok) {
+                throw new Error("Map data failed to fetch");
+            }
+
+            ts_text = await ts_res.text();
+            map_json = await map_res.json();
         }
-        if (!map_res.ok) {
-            throw new Error("Map data failed to fetch");
-        }
-
-        const ts_text = await ts_res.text();
-        const map_json = await map_res.json();
-
-        return { ts_text, map_json };
+        return { ts_text, map_data };
     } catch (error) {
         console.error("Error fetching files:", error);
     }
@@ -26,198 +41,170 @@ function plot(ts_data, map_data) {
 
     vizdiv.innerHTML = "";
 
-    if (map_data && ts_data) {
+    if (ts_data) {
         let r = document.getElementById("vizdiv").getBoundingClientRect();
 
         let spec = {
             $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-            hconcat: [
+            vconcat: [
                 {
-                    vconcat: [
+                    title: "Mean SEC per Basin",
+                    width: 800,
+                    height: 200,
+                    layer: [
                         {
-                            title: "Mean SEC per Basin",
-                            width: 800,
-                            height: 200,
-                            layer: [
-                                {
-                                    
-                                    data: {
-                                        values: ts_data, format:{
-                                            type:"csv"
-                                        },
-                                    },
-                                    mark: "line",
-                                    encoding: {
-                                        x: {
-                                            field: "midpoint",
-                                            type: "temporal",
-                                            title: "Time Period",
-                                        },
-                                        y: {
-                                            field: "Smooth SEC",
-                                            type: "quantitative",
-                                            title: "Mean elevation change (m/year)",
-                                        },
-                                        opacity: {
-                                            condition: {
-                                                param: "click",
-                                                value: 1,
-                                            },
-                                            value: 0.05,
-                                        },
-                                        color: {
-                                            field: "Subregion",
-                                            type: "nominal",
-                                        },
-                                        tooltip: [
-                                            { field: "Raw SEC" },
-                                            { field: "period" },
-                                            { field: "Subregion" },
-                                        ],
-                                    },
-                                    params: [
-                                        {
-                                            name: "click",
-                                            select: {
-                                                type: "point",
-                                                on: "click",
-                                                clear: "mouseout",
-                                            },
-                                        },
-                                    ],
+                            data: {
+                                values: ts_data, format:{
+                                    type:"csv"
                                 },
+                            },
+                            mark: "line",
+                            encoding: {
+                                x: {
+                                    field: "midpoint",
+                                    type: "temporal",
+                                    title: "Time Period",
+                                },
+                                y: {
+                                    field: "Smooth SEC",
+                                    type: "quantitative",
+                                    title: "Mean elevation change (m/year)",
+                                },
+                                opacity: {
+                                    condition: {
+                                        param: "click",
+                                        value: 1,
+                                    },
+                                    value: 0.05,
+                                },
+                                color: {
+                                    field: "Subregion",
+                                    type: "nominal",
+                                    legend: {
+                                        values: [
+                                            "All",
+                                            "A-Ap",
+                                            "Ap-B",
+                                            "B-C",
+                                            "C-Cp",
+                                            "D-Dp",
+                                            "Dp-E",
+                                            "E-Ep",
+                                            "Ep-F",
+                                            "F-G",
+                                            "G-H",
+                                            "H-Hp",
+                                            "Hp-I",
+                                            "I-Ipp",
+                                            "Ipp-J",
+                                            "J-Jpp",
+                                            "Jpp-K",
+                                            "K-A"
+                                        ]
+                                    }
+                                },
+                                tooltip: [
+                                    { field: "Raw SEC" },
+                                    { field: "period" },
+                                    { field: "Subregion" },
+                                ],
+                            },
+                            params: [
                                 {
-                                    data: {
-                                        values: [{ zero: 0.0 }],
+                                    name: "click",
+                                    select: {
+                                        type: "point",
+                                        fields: ["Subregion"]
                                     },
-                                    mark: {
-                                        type: "rule",
-                                        color: "black",
-                                        strokeDash: [1],
-                                    },
-                                    encoding: {
-                                        y: {
-                                            field: "zero",
-                                            type: "quantitative",
-                                        },
-                                        size: { value: 1 },
-                                    },
+                                    bind: "legend"
                                 },
                             ],
                         },
                         {
-                            title: "Total Mean SEC since 1991 per basin",
-                            width: 800,
-                            height: 200,
-                            layer: [
-                                {                                    
-                                    data: {
-                                        values: ts_data, format:{
-                                            type:"csv"
-                                        },
-                                    },
-                                    mark: "line",
-                                    encoding: {
-                                        x: {
-                                            field: "midpoint",
-                                            type: "temporal",
-                                            title: "Time Period",
-                                        },
-                                        y: {
-                                            field: "dH",
-                                            type: "quantitative",
-                                            title: "Total elevation change (m)",
-                                        },
-                                        opacity: {
-                                            condition: {
-                                                param: "click",
-                                                value: 1,
-                                            },
-                                            value: 0.05,
-                                        },
-                                        color: {
-                                            field: "Subregion",
-                                            type: "nominal",
-                                        },
-                                        tooltip: [
-                                            { field: "dH" },
-                                            { field: "period" },
-                                            { field: "Subregion" },
-                                        ],
-                                    },
-                                    params: [
-                                        {
-                                            name: "click",
-                                            select: {
-                                                type: "point",
-                                                on: "click",
-                                                clear: "mouseout",
-                                            },
-                                        },
-                                    ],
+                            data: {
+                                values: [{ zero: 0.0 }],
+                            },
+                            mark: {
+                                type: "rule",
+                                color: "black",
+                                strokeDash: [1],
+                            },
+                            encoding: {
+                                y: {
+                                    field: "zero",
+                                    type: "quantitative",
                                 },
-                                {
-                                    data: {
-                                        values: [{ zero: 0.0 }],
-                                    },
-                                    mark: {
-                                        type: "rule",
-                                        color: "black",
-                                        strokeDash: [1],
-                                    },
-                                    encoding: {
-                                        y: {
-                                            field: "zero",
-                                            type: "quantitative",
-                                        },
-                                        size: { value: 1 },
-                                    },
-                                },
-                            ],
+                                size: { value: 1 },
+                            },
                         },
                     ],
                 },
                 {
-                    title: "Basin Map",
-                    width: 500,
-                    height: 500,
-                    
-                    data: {
-                        values: map_data, format:{
-                            type:"topojson",
-                            feature:"data"
-                        }
-                    },
-                    mark: "geoshape",
-                    encoding: {
-                        color: {
-                            field: "properties.Subregion",
-                            type: "nominal",
-                            title: "Subregion"
-                        },
-                        opacity: {
-                            condition: {
-                                param: "click",
-                                value: 1,
+                    title: "Total Mean SEC since 1991 per basin",
+                    width: 800,
+                    height: 200,
+                    layer: [
+                        {                                    
+                            data: {
+                                values: ts_data, format:{
+                                    type:"csv"
+                                },
                             },
-                            value: 0.2,
+                            mark: "line",
+                            encoding: {
+                                x: {
+                                    field: "midpoint",
+                                    type: "temporal",
+                                    title: "Time Period",
+                                },
+                                y: {
+                                    field: "dH",
+                                    type: "quantitative",
+                                    title: "Total elevation change (m)",
+                                },
+                                opacity: {
+                                    condition: {
+                                        param: "click",
+                                        value: 1,
+                                    },
+                                    value: 0.05,
+                                },
+                                color: {
+                                    field: "Subregion",
+                                    type: "nominal",
+                                },
+                                tooltip: [
+                                    { field: "dH" },
+                                    { field: "period" },
+                                    { field: "Subregion" },
+                                ],
+                            },
+                            params: [
+                                {
+                                    name: "click",
+                                    select: {
+                                        type: "point",
+                                        fields: ["Subregion"]
+                                    },
+                                    bind: "legend"
+                                },
+                            ],
                         },
-                        tooltip: [
-                            { field: "properties.Subregion", type: "nominal" },
-                            { field: "properties.Regions", type: "nominal" },
-                        ],
-                    },
-                    projection: {
-                        type: "stereographic",
-                        center: [-90, -180],
-                    },
-                    params: [
                         {
-                            name: "click",
-                            select: {
-                                type: "point",
-                                on: "click",
-                                clear: "mouseout",
+                            data: {
+                                values: [{ zero: 0.0 }],
+                            },
+                            mark: {
+                                type: "rule",
+                                color: "black",
+                                strokeDash: [1],
+                            },
+                            encoding: {
+                                y: {
+                                    field: "zero",
+                                    type: "quantitative",
+                                },
+                                size: { value: 1 },
                             },
                         },
                     ],
@@ -234,22 +221,19 @@ function plot(ts_data, map_data) {
                 compiled: false,
                 editor: false,
             },
-        });
+        }).catch(console.error);
+        
+        
     }
 }
 
 function main() {
-    const imageSelect = document.getElementById("imageSelect");
-    const displayImage = document.getElementById("displayImage");
-
     fetchFiles(
         "processed_files/time_series_data_AIS.csv",
-        "aux_files/ais_basins.json"
+        null
     ).then((data) => {
         if (data) {
             const { ts_text, map_json } = data;
-            console.log(map_json);
-            console.log(ts_text);
             plot(ts_text, map_json);
 
             window.addEventListener("resize", (evt) => {
