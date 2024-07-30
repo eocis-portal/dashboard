@@ -130,7 +130,7 @@ function main() {
     const displayImage = document.getElementById('displayImage');
 
 
-    fetch("processed_files/sea_ice_thickness.csv").then(r => r.text()).then(txt => {
+    fetch("data/sea_ice_thickness.csv").then(r => r.text()).then(txt => {
         data = txt;
 
         plot();
