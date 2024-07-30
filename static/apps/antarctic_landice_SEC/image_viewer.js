@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to fetch the list of image files from the JSON file
     async function fetchImageList() {
         try {
-            const response = await fetch('processed_files/AIS_images.json'); // Path to your JSON file
+            const response = await fetch('data/AIS_images.json'); // Path to your JSON file
             const images = await response.json();
             populateSelectBox(images);
         } catch (error) {
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     imageSelect.addEventListener('change', function() {
         const selectedImage = imageSelect.value;
         if (selectedImage) {
-            displayImage.src = `processed_files/images/${selectedImage}`; // Adjust the path to your images directory if needed
+            displayImage.src = `data/images/${selectedImage}`; // Adjust the path to your images directory if needed
         } else {
             displayImage.src = '';
         }

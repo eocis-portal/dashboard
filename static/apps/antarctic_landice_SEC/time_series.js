@@ -229,7 +229,7 @@ function plot(ts_data, map_data) {
 
 function main() {
     fetchFiles(
-        "processed_files/time_series_data_AIS.csv",
+        "data/time_series_data_AIS.csv",
         null
     ).then((data) => {
         if (data) {
