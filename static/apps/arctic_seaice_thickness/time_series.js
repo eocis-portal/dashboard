@@ -55,7 +55,7 @@ function plot() {
                             'title': 'Mean thickness (m)',
                             'type': 'quantitative',
                             'scale': {
-                                'domain': [0, 3.5]
+                                'domain': [0, 2.5]
                             },
                             'stack':null,
                         }
