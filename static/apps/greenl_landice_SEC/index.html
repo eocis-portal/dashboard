@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Arctic Sea Ice thickness</title>
+    <title>Greenland Ice Sheet SEC</title>
     <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.6.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.2"></script>
     <script src="time_series.js"></script>
+    <script src="tabs.js"></script>
     <script defer src="image_viewer.js"></script>
     <link rel="Stylesheet" href="main.css">
 </head>
@@ -15,15 +16,28 @@
         <h1>Mean Surface Elevation Change (SEC) in Greenland per year</h1>
         <p>Need new text here &#128005;</p>
         <p>This app is based on <a href="https://eocis.org/dataset-land-ice-elevation/">the EOCIS SEC dataset.</a></p>
-        <!-- <a href="sea_ice_thickness.csv" download="sea_ice_thickness.csv">Download the data (CSV)</a> -->
-        <div id="vizdiv">
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'timeseries')" id="defaultTab">Time Series</button>
+            <button class="tablinks" onclick="openTab(event, 'periodview')">Time period viewer</button>
         </div>
-        <h2>Select a time period</h2>
-        <select id="imageSelect">
-            <option value="">--Select an Image--</option>
-        </select>
-        <br><br>
-        <img id="displayImage" src="" alt="Selected Image" style="max-width: 100%; height: auto;">
+        <div id="timeseries" class="tabcontent">
+            <p>Need new text here &#128005;</p>
+            <div id="vizdiv">
+            </div>
+        </div>
+        <div id="periodview" class="tabcontent">
+            <p>Need new text here &#128005;</p>
+            <p>Select a time period
+                <select id="imageSelect">
+                    <option value="">--Select an Image--</option>
+                </select>
+            </p>
+            <br><br>
+            <img hidden id="displayImage" src="" alt="Selected Image">
+        </div>
     </div>
+    <script>
+        document.getElementById("defaultTab").click();
+    </script>
 </body>
 </html>

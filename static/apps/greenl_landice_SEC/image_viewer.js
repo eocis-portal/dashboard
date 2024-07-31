@@ -28,8 +28,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectedImage = imageSelect.value;
         if (selectedImage) {
             displayImage.src = `data/images/${selectedImage}`; // Adjust the path to your images directory if needed
+            displayImage.hidden = false;
         } else {
             displayImage.src = '';
+            displayImage.hidden = true;
         }
     });
 
