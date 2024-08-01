@@ -22,16 +22,27 @@
         </div>
         <div id="timeseries" class="tabcontent">
             <p>Need new text here &#128005;</p>
-            <div id="vizdiv">
+            <div class="ts-container">
+                <div id="vizdiv" class="ts-child"></div>
+                <div id="map" class="ts-child">
+                    <img src="Rignot-basins.jpeg" alt="Rignot definitions for the Antarctic Ice Sheets">
+                    <p>Rignot definition for Antarctic drainage basins and ice sheets, produced by E. Rignot and J. Mouginot (Image from <a href="http://imbie.org/imbie-3/drainage-basins/">http://imbie.org/imbie-3/drainage-basins/</a>)</p>
+                </div>
             </div>
         </div>
         <div id="periodview" class="tabcontent">
-            <h2>Select a time period</h2>
-            <select id="imageSelect">
-                <option value="">--Select an Image--</option>
-            </select>
-            <br><br>
-            <img hidden id="displayImage" src="" alt="Selected Image">
+            <div class="pv-container">
+                <div class="pv-child">
+                    <p>Select a time period
+                        <select id="imageSelect">
+                            <option value="">--Select an Image--</option>
+                        </select>
+                    </p>
+                </div>
+                <div class="pv-child">
+                    <img hidden id="displayImage" src="" alt="Selected Image">
+                </div>
+            </div>
         </div>
     </div>
     <script>
