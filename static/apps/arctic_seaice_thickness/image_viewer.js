@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to populate the select box with image options
     function populateSelectBox(images) {
-        images.forEach(image => {
+        images.reverse().forEach((image, key, arr) => {
             const option = document.createElement('option');
             option.value = image.fileName;
             option.textContent = image.displayName;
