@@ -83,7 +83,8 @@ body {
 }
 
 .ts-child img {
-    width: 100%;
+    max-height: 600px;
+    align-content: center;
 }
 
 .pv-container {
