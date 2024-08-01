@@ -49,7 +49,7 @@ function plot(ts_data, map_data) {
             vconcat: [
                 {
                     title: "Mean SEC per Basin",
-                    width: 800,
+                    width: "container",
                     height: 200,
                     layer: [
                         {
@@ -131,7 +131,7 @@ function plot(ts_data, map_data) {
                 },
                 {
                     title: "Total Mean SEC since 1991 per basin",
-                    width: 800,
+                    width: "container",
                     height: 200,
                     layer: [
                         {                                    
