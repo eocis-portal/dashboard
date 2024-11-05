@@ -29,11 +29,17 @@
         <div id="periodview" class="tabcontent">
             <p>The plot below shows the average Arctic sea ice thickness for each month from November 2010 to present. </p>
             <p>Select a time period
-                <select id="imageSelect">
+                <div class="slidercontainer">
+                    <input type="range" min="0" max="1" value="0" class="slider" id="imageSelect">
+                </div>
+                <!-- <select id="imageSelect">
                     <option value="">--Select an Image--</option>
-                </select>
+                </select> -->
             </p>
-            <img hidden id="displayImage" src="" alt="Selected Image">
+            <div hidden id="displayArea">
+                <h4 id="displayText">Selected period using the slider below</h4>
+                <img id="displayImage" src="" alt="Selected Image">
+            </div>
         </div>
     </div>
     <script>
