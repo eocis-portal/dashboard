@@ -28,13 +28,10 @@ body {
 
 /* CSS FOR TABS */
 .tab {
-    margin-left: 2em;
-    margin-right: 2em;
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
     min-height:3em;
-    max-width: 50%;
 }
 
 .tab button {
@@ -67,8 +64,15 @@ body {
 #displayImage {
     width: auto; 
     max-height:100%;
-    min-height: 30%;
-    align-self: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.slider {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 /* CSS FOR TIMESERIES LAYOUT */
