@@ -48,7 +48,7 @@ function plot(ts_data, map_data) {
             $schema: "https://vega.github.io/schema/vega-lite/v5.json",
             vconcat: [
                 {
-                    title: "Mean SEC per Basin",
+                    title: "Elevation change rate per Basin",
                     width: "container",
                     height: 200,
                     layer: [
@@ -81,8 +81,16 @@ function plot(ts_data, map_data) {
                                     field: "Subregion",
                                     type: "nominal",
                                     legend: {
-                                        values: [
+                                        title: "Basins",
+                                        titleFontSize:14,
+                                        labelFontSize: 14,
+                                        symbolType: 'circle',
+                                        symbolSize: 50,
+                                    },
+                                    scale: {
+                                        domain: [
                                             "All",
+                                            // East regions
                                             "A-Ap",
                                             "Ap-B",
                                             "B-C",
@@ -90,16 +98,38 @@ function plot(ts_data, map_data) {
                                             "D-Dp",
                                             "Dp-E",
                                             "E-Ep",
+                                            "Jpp-K",
+                                            "K-A",
+                                            // West regions
                                             "Ep-F",
                                             "F-G",
                                             "G-H",
                                             "H-Hp",
+                                            "J-Jpp",
+                                            // Peninsula regions
                                             "Hp-I",
                                             "I-Ipp",
                                             "Ipp-J",
-                                            "J-Jpp",
-                                            "Jpp-K",
-                                            "K-A"
+                                        ],
+                                        range: [
+                                            "black",
+                                            "#3a95c4",
+                                            "#3a95c4",
+                                            "#3a95c4",
+                                            "#3a95c4",
+                                            "#3a95c4",
+                                            "#3a95c4",
+                                            "#3a95c4",
+                                            "#3a95c4",
+                                            "#3a95c4",
+                                            "#e5367b",
+                                            "#e5367b",
+                                            "#e5367b",
+                                            "#e5367b",
+                                            "#e5367b",
+                                            "#b8d486",
+                                            "#b8d486",
+                                            "#b8d486",
                                         ]
                                     }
                                 },
@@ -140,7 +170,7 @@ function plot(ts_data, map_data) {
                     ],
                 },
                 {
-                    title: "Total Mean SEC since 1991 per basin",
+                    title: "Eleavation change since 1991 per basin",
                     width: "container",
                     height: 200,
                     layer: [
