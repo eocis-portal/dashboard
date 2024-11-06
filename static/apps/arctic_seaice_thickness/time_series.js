@@ -23,7 +23,7 @@ function plot() {
                     'encoding': {
                         'color': {
                             'field': 'season_year',
-                            'legend': {'title': 'Season year'},
+                            'legend': {'title': 'Season year', 'labelFontSize':16, 'symbolType':'circle'},
                             'type': 'nominal',
                             'scale': {"scheme":"blues", 'reverse':true, 'sort':"descending"},
                             'sort': "descending",
