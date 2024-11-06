@@ -14,14 +14,13 @@
 <body onload="main()">
     <div id="flexroot">
         <h1>Mean Surface Elevation Change (SEC) in Greenland per year</h1>
-        <p>Need new text here &#128005;</p>
-        <p>This app is based on <a href="https://eocis.org/dataset-land-ice-elevation/">the EOCIS SEC dataset.</a></p>
+        <p>This app is based on <a href="https://eocis.org/dataset-land-ice-elevation/">the EOCIS SEC dataset. For more information, please see the user guide.</a></p>
         <div class="tab">
             <button class="tablinks" onclick="openTab(event, 'timeseries')" id="defaultTab">Time Series</button>
-            <button class="tablinks" onclick="openTab(event, 'periodview')">Time period viewer</button>
+            <button class="tablinks" onclick="openTab(event, 'periodview')">Map viewer</button>
         </div>
         <div id="timeseries" class="tabcontent">
-            <p>Need new text here &#128005;</p>
+            <p>The plot below shows how the height of the Greenlandic ice sheets changed over time from 1992 to the current day. Height changes are displayed for the whole ice sheet as well as individual drainage basins where ice flows from inland towards the ocean.</p>
             <div class="ts-container">
                 <div id="vizdiv" class="ts-child">
                 </div>
@@ -32,13 +31,16 @@
             </div>
         </div>
         <div id="periodview" class="tabcontent">
-            <p>Need new text here &#128005;</p>
-            <p>Select a time period
-                <select id="imageSelect">
-                    <option value="">--Select an Image--</option>
-                </select>
+            <p>The plot below shows how the rate of height change over the Greenlandic ice sheet over 5-year periods. Any 5-year period can be selected between 1992 and the current day.</p>
+            <p>Select a time period using the slider below.
+                <div class="slidercontainer">
+                    <input type="range" min="0" max="1" value="0" class="slider" id="imageSelect">
+                </div>
             </p>
-            <img hidden id="displayImage" src="" alt="Selected Image">
+            <div hidden id="displayArea">
+                <h4 id="displayText">Selected period using the slider below</h4>
+                <img id="displayImage" src="" alt="Selected Image">
+            </div>
         </div>
     </div>
     <script>
