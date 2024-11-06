@@ -19,7 +19,7 @@
         <p>This app is based on <a href="https://eocis.org/dataset-arctic-sea-ice/">the EOCIS Arctic Sea Ice thickness dataset.</a></p>
         <div class="tab">
             <button class="tablinks" onclick="openTab(event, 'timeseries')" id="defaultTab">Time Series</button>
-            <button class="tablinks" onclick="openTab(event, 'periodview')">Time period viewer</button>
+            <button class="tablinks" onclick="openTab(event, 'periodview')">Maps</button>
         </div>
         <div id="timeseries" class="tabcontent">
             <p>The time series below shows the change in Arctic sea ice thickness each year from 2010 to present. </p>
@@ -32,9 +32,6 @@
                 <div class="slidercontainer">
                     <input type="range" min="0" max="1" value="0" class="slider" id="imageSelect">
                 </div>
-                <!-- <select id="imageSelect">
-                    <option value="">--Select an Image--</option>
-                </select> -->
             </p>
             <div hidden id="displayArea">
                 <h4 id="displayText">Selected period using the slider below</h4>
