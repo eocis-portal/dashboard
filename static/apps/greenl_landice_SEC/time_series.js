@@ -48,7 +48,7 @@ function plot(ts_data, map_data) {
             $schema: "https://vega.github.io/schema/vega-lite/v5.json",
             vconcat: [
                 {
-                    title: "Mean SEC per Basin",
+                    title: "Mean elevation change per Basin",
                     width: "container",
                     height: 200,
                     layer: [
@@ -81,7 +81,14 @@ function plot(ts_data, map_data) {
                                     field: "Subregion",
                                     type: "nominal",
                                     legend: {
-                                        values: [
+                                        title: "Basins",
+                                        titleFontSize:14,
+                                        labelFontSize: 14,
+                                        symbolType: 'circle',
+                                        symbolSize: 50,
+                                    },
+                                    scale: {
+                                        "domain": [
                                             "All",
                                             "NE",
                                             "NO",
@@ -90,7 +97,8 @@ function plot(ts_data, map_data) {
                                             "CW",
                                             "SE",
                                             "SW"
-                                        ]
+                                        ],
+                                        "range": ["#00000", "#73fe6d", "#6ffff6", "#6b88fd", "#fffa6a", "#fe70fa", "#ff8d72", "#b17090"],
                                     }
                                 },
                                 tooltip: [
@@ -130,7 +138,7 @@ function plot(ts_data, map_data) {
                     ],
                 },
                 {
-                    title: "Total Mean SEC since 1991 per basin",
+                    title: "Total elevation change since 1991 per basin",
                     width: "container",
                     height: 200,
                     layer: [
