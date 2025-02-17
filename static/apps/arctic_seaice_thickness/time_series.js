@@ -13,7 +13,22 @@ function plot() {
                 
         let spec = {
             '$schema': 'https://vega.github.io/schema/vega-lite/v5.6.1.json',
-            'config': {'view': {'continuousWidth': 300, 'continuousHeight': 300}},
+            'config': {
+                'view': {
+                    'continuousWidth': 300, 
+                    'continuousHeight': 300
+                }, 
+                "title": {
+                    "fontSize":20
+                }, 
+                "axis":{
+                    "labelFontSize":15, 
+                    "titleFontSize":15
+                },
+                'axisX':{
+                    "labelAngle":-45
+                }
+            },
             'height': 400,
             'width': 900,
             'data': {"format":{"type":"csv"}, "values": data},
@@ -45,7 +60,7 @@ function plot() {
                                     'April'
                                 ]
                             },
-                            'title': 'Time Period',
+                            'title': 'Month',
                             'type': 'nominal',
                             'sort': {"field": "season_month"},
                             'stack':null,
@@ -95,7 +110,7 @@ function plot() {
                                     'April'
                                 ]
                             },
-                            'title': 'Time Period',
+                            'title': 'Month',
                             'type': 'nominal'
                         },
                         'y': {

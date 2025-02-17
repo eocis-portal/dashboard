@@ -15,8 +15,8 @@
 <body onload="main()">
     <div id="flexroot">
         <h1>Mean Sea Ice Thickness per year</h1>
-        <p>This app is based on the EOCIS Arctic Sea ice thickness dataset. There are challenges in sea ice retrievals from satellite altimetry in summer, so data is only available from October to April each year. For more information, please read our user guide.</p>
-        <p>This app is based on <a href="https://eocis.org/dataset-arctic-sea-ice/">the EOCIS Arctic Sea Ice thickness dataset.</a></p>
+        <p>This app is based on the <a href="https://eocis.org/dataset-arctic-sea-ice/">EOCIS Arctic Sea Ice thickness dataset</a>. There are challenges in sea ice retrievals from satellite altimetry in summer, so data is only available from October to April each year. For more information, please read our user guide.</p>
+        <p>This dataset was produced by the Centre For Polar Observation and Modelling. For more information, please visit our homepage at <a href="https://www.cpom.org.uk/">https://www.cpom.org.uk/</a>.</p>
         <div class="tab">
             <button class="tablinks" onclick="openTab(event, 'timeseries')" id="defaultTab">Time Series</button>
             <button class="tablinks" onclick="openTab(event, 'periodview')">Maps</button>
@@ -30,11 +30,29 @@
             <p>The plot below shows the average Arctic sea ice thickness for each month from November 2010 to present. </p>
             <p>Select a time period using the slider below.
                 <div class="slidercontainer">
-                    <input type="range" min="0" max="1" value="0" class="slider" id="imageSelect">
+                    <input type="range" min="0" max="1" value="0" class="slider" id="imageSelect" list="markers">
+                    <datalist id="markers">
+                        <option value="0"></option>
+                        <option value="6"></option>
+                        <option value="13"></option>
+                        <option value="20"></option>
+                        <option value="27"></option>
+                        <option value="34"></option>
+                        <option value="41"></option>
+                        <option value="48"></option>
+                        <option value="55"></option>
+                        <option value="62"></option>
+                        <option value="69"></option>
+                        <option value="76"></option>
+                        <option value="83"></option>
+                        <option value="90"></option>
+                        <option value="97"></option>
+                        <option value="104"></option>
+                    </datalist>
                 </div>
             </p>
             <div hidden id="displayArea">
-                <h4 id="displayText">Selected period using the slider below</h4>
+                <h4 id="displayText" style="text-align: center; font-size: large;">Selected period using the slider below</h4>
                 <img id="displayImage" src="" alt="Selected Image">
             </div>
         </div>
