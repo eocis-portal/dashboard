@@ -15,6 +15,7 @@
     <div id="flexroot">
         <h1>Mean Surface Elevation Change (SEC) in Antarctica per year</h1>
         <p>This app is based on <a href="https://eocis.org/dataset-land-ice-elevation/">the EOCIS Antarctic SEC dataset</a>.  For more information, please see the user guide.</p>
+        <p>This dataset was produced by the Centre For Polar Observation and Modelling. For more information, please visit our homepage at <a href="https://www.cpom.org.uk/">https://www.cpom.org.uk/</a>.</p>
         <div class="tab">
             <button class="tablinks" onclick="openTab(event, 'timeseries')" id="defaultTab">Time Series</button>
             <button class="tablinks" onclick="openTab(event, 'periodview')">Map Viewer</button>
@@ -22,10 +23,11 @@
         <div id="timeseries" class="tabcontent">
             <p>The plot below shows how the height of the Antarctic ice sheets changed over time from 1996 to the current day. Height changes are displayed for the whole ice sheet as well as individual drainage basins where ice flows from inland towards the ocean.</p>
             <div class="ts-container">
-                <div id="vizdiv" class="ts-child"></div>
+                <div id="vizdiv1" class="ts-child"></div>
+                <div id="vizdiv2" class="ts-child"></div>
                 <div id="map" class="ts-child">
-                    <img src="Rignot-basins.jpeg" alt="Rignot definitions for the Antarctic Ice Sheets">
-                    <p>Rignot definition for Antarctic drainage basins and ice sheets, produced by E. Rignot and J. Mouginot (Image from <a href="http://imbie.org/imbie-3/drainage-basins/">http://imbie.org/imbie-3/drainage-basins/</a>)</p>
+                    <img src="Rignot-basins.jpeg" alt="Rignot definitions for the Antarctic Ice Sheets" id="">
+                    <p>Rignot definition for Antarctic drainage basins and ice sheets, <br>produced by E. Rignot and J. Mouginot <br>(Image from <a href="http://imbie.org/imbie-3/drainage-basins/">http://imbie.org/imbie-3/drainage-basins/</a>)</p>
                 </div>
             </div>
         </div>
