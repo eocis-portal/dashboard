@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arctic Sea Ice thickness</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.6.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.2"></script>
+    <script src="time_series.js"></script>
+    <script src="tabs.js"></script>
+    <script defer src="image_viewer.js"></script>
+    <link rel="Stylesheet" href="main.css">
+</head>
+<body onload="main()">
+    <div id="flexroot">
+        <h1>Mean Surface Elevation Change (SEC) in Antarctica per year</h1>
+        <p>This app is based on <a href="https://eocis.org/dataset-land-ice-elevation/">the EOCIS Antarctic SEC dataset</a>.  For more information, please see the user guide.</p>
+        <p>This dataset was produced by the Centre For Polar Observation and Modelling. For more information, please visit our homepage at <a href="https://www.cpom.org.uk/">https://www.cpom.org.uk/</a>.</p>
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'timeseries')" id="defaultTab">Time Series</button>
+            <button class="tablinks" onclick="openTab(event, 'periodview')">Map Viewer</button>
+        </div>
+        <div id="timeseries" class="tabcontent">
+            <p>The plot below shows how the height of the Antarctic ice sheets changed over time from 1996 to the current day. Height changes are displayed for the whole ice sheet as well as individual drainage basins where ice flows from inland towards the ocean.</p>
+            <div class="ts-container">
+                <div id="vizdiv1" class="ts-child"></div>
+                <div id="vizdiv2" class="ts-child"></div>
+                <div id="map" class="ts-child">
+                    <img src="Rignot-basins.jpeg" alt="Rignot definitions for the Antarctic Ice Sheets" id="">
+                    <p>Rignot definition for Antarctic drainage basins and ice sheets, <br>produced by E. Rignot and J. Mouginot <br>(Image from <a href="http://imbie.org/imbie-3/drainage-basins/">http://imbie.org/imbie-3/drainage-basins/</a>)</p>
+                </div>
+            </div>
+        </div>
+        <div id="periodview" class="tabcontent">
+            <p>The plot below shows how the rate of height change over the Antarctic ice sheet over 5-year periods. Any 5-year period can be selected between 1996 and the current day.</p>
+            <p>Select a time period using the slider below.
+                <div class="slidercontainer">
+                    <input type="range" min="0" max="1" value="0" class="slider" id="imageSelect">
+                </div>
+            </p>
+            <div hidden id="displayArea">
+                <h4 style="text-align: center; font-size: large;" id="displayText">Selected period using the slider below</h4>
+                <img id="displayImage" src="" alt="">
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById("defaultTab").click();
+    </script>
+</body>
+</html>
