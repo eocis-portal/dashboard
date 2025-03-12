@@ -6,36 +6,6 @@
     margin:0px;
 }
 
-#vizdiv1 {
-    grid-area: p1;
-    height: fit-content;
-    overflow: auto;
-}
-
-#vizdiv2 {
-    grid-area: p2;
-}
-
-#map {
-    grid-area: map;
-    width:100%;
-}
-
-#map img {
-    max-height: 500px;
-    width:auto;
-    object-fit: contain;
-}
-
-#map p {
-    font-size: 0.9rem;
-    line-height: 1.1;
-    max-height: 60px;
-    white-space: normal;
-    text-overflow:ellipsis;
-    word-break:break-all;
-    margin: 5px 0 0 0;
-}
 
 .vega-actions a {
     margin-left: 20px;
@@ -90,7 +60,7 @@ body {
 
 /* CSS FOR DISPLAY IMAGE */
 #displayImage {
-    width: auto; 
+    width: 100%; 
     max-height:100%;
     display: block;
     margin-left: auto;
@@ -108,12 +78,23 @@ body {
 .ts-container {
     display: grid;
     grid-template-areas: 
-    "p1 p1 map"
-    "p2 p2 map";
+    "p1 map"
+    "p2 map";
     grid-template-rows: 1fr 1fr;
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 2fr 1fr;
     gap:10px;
-    height: 100%;
+    width: 100%;
+}
+
+@media only screen and (orientation: portrait) {
+    .ts-container{
+        grid-template-areas: 
+            "map"
+            "p1"
+            "p2";
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
+    }
 }
 
 #vizdiv1, #vizdiv2 {
@@ -123,18 +104,32 @@ body {
     display: block;
 }
 
-.pv-container {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr;
+#vizdiv1 {
+    grid-area: p1;
+    height: fit-content;
+    overflow: auto;
 }
 
-.pv-child {
-    place-content: top left;
-    width: fit-content;
+#vizdiv2 {
+    grid-area: p2;
 }
 
-.pv-child img {
+#map {
+    grid-area: map;
+}
+
+#map img {
+    max-height: 100%;
     width: 100%;
-    place-self: center;
+    object-fit: contain;
+}
+
+#map p {
+    font-size: 0.9rem;
+    line-height: 1.1;
+    max-height: 60px;
+    white-space: normal;
+    text-overflow:ellipsis;
+    word-break:break-all;
+    margin: 5px 0 0 0;
 }
