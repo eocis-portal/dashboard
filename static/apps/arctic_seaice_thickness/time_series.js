@@ -29,8 +29,8 @@ function plot() {
                     "labelAngle":-45
                 }
             },
-            'height': 400,
-            'width': 900,
+            'height': "350",
+            'width': "container",
             'data': {"format":{"type":"csv"}, "values": data},
             'layer': [
                 {
