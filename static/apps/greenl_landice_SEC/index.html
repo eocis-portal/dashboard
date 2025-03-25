@@ -14,17 +14,18 @@
 <body onload="main()">
     <div id="flexroot">
         <h1>Mean Surface Elevation Change (SEC) in Greenland per year</h1>
-        <p>This app is based on <a href="https://eocis.org/dataset-land-ice-elevation/">the EOCIS SEC dataset. For more information, please see the user guide.</a></p>
+        <p>This app is based on <a href="https://eocis.org/dataset-land-ice-elevation/">the EOCIS Greenland SEC dataset</a>. For more information, please see the user guide.</p>
+        <p>This dataset was produced by the Centre For Polar Observation and Modelling. For more information, please visit our homepage at <a href="https://www.cpom.org.uk/">https://www.cpom.org.uk/</a>.</p>
         <div class="tab">
             <button class="tablinks" onclick="openTab(event, 'timeseries')" id="defaultTab">Time Series</button>
-            <button class="tablinks" onclick="openTab(event, 'periodview')">Map viewer</button>
+            <button class="tablinks" onclick="openTab(event, 'periodview')">Map Viewer</button>
         </div>
         <div id="timeseries" class="tabcontent">
             <p>The plot below shows how the height of the Greenlandic ice sheets changed over time from 1992 to the current day. Height changes are displayed for the whole ice sheet as well as individual drainage basins where ice flows from inland towards the ocean.</p>
             <div class="ts-container">
-                <div id="vizdiv" class="ts-child">
-                </div>
-                <div class="ts-child">
+                <div id="vizdiv1" class="ts-child"></div>
+                <div id="vizdiv2" class="ts-child"></div>
+                <div id="map" class="ts-child">
                     <img src="Mouginot_basins.jpg">
                     <p style="color: gray; font-size: x-small;">Greenland drainage basin and ice sheet definitions produced by J. Mouginot and E. Rignot (Image from <a href="http://imbie.org/imbie-3/drainage-basins/">http://imbie.org/imbie-3/drainage-basins/</a>)</p>
                 </div>
